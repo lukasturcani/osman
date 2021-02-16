@@ -25,6 +25,7 @@ class ArchLinux(Installer):
         rc_manager_config: pathlib.Path,
         mullvad_config: pathlib.Path,
         zsh_theme: pathlib.Path,
+        zshrc: pathlib.Path,
         pypirc: pathlib.Path,
         xinitrc: pathlib.Path,
         xresources: pathlib.Path,
@@ -84,6 +85,10 @@ class ArchLinux(Installer):
                 SymbolicLink(
                     source=pypirc,
                     destination=home.joinpath('.pypirc'),
+                ),
+                SymbolicLink(
+                    source=zshrc,
+                    destination=home.joinpath('.zshrc'),
                 ),
                 SymbolicLink(
                     source=xinitrc,
@@ -156,8 +161,9 @@ class ArchLinux(Installer):
         self._directory_maker.install()
         self._pacman.install()
         self._root_symbolic_linker.install()
+        self._user_symbolic_linker.install()
         self._projects_directory_maker.install()
         self._vim_plugin_installer.install()
         self._zsh_installer.install()
         # Change the default shell of root.
-        subprocess.run(['chsh', '-s', '/bin/zsh', 'root'])
+        subprocess.run(['sudo', 'chsh', '-s', '/bin/zsh', 'root'])

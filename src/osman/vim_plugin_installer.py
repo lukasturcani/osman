@@ -25,11 +25,11 @@ class VimPluginInstaller(Installer):
             'share',
             'nvim',
             'site',
-            'pack'
+            'pack',
         )
 
     def install(self) -> None:
-        self._plugin_directory.mkdir(exist_ok=True)
+        self._plugin_directory.mkdir(parents=True, exist_ok=True)
 
         for plugin in self._plugins:
             *_, name = plugin.split('/')

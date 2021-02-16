@@ -15,6 +15,4 @@ class Pacman(Installer):
         self._packages = tuple(packages)
 
     def install(self) -> None:
-        subprocess.run([
-            'sudo', 'pacman', '-S', ' '.join(self._packages)
-        ])
+        subprocess.run(['sudo', 'pacman', '-S', *self._packages])

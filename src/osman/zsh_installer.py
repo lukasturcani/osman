@@ -41,16 +41,22 @@ class ZshInstaller(Installer):
             subprocess.run(['git', 'clone', plugin, destination])
 
     def _install_oh_my_zsh(self) -> None:
+
+        install_script = str(pathlib.Path.home().joinpath(
+            'install-oh-my-zsh.sh',
+        ))
+
+        subprocess.run([
+            'curl',
+            (
+                'https://raw.githubusercontent.com/'
+                'ohmyzsh/ohmyzsh/master/tools/install.sh'
+            ),
+            '-o',
+            install_script,
+        ])
         subprocess.run(
-            args=[
-                'sh',
-                '-c',
-                (
-                    '$(curl -fsSL '
-                    'https://raw.githubusercontent.com/'
-                    'ohmyzsh/ohmyzsh/master/tools/install.sh)'
-                ),
-            ],
+            args=['sh', install_script],
             env={
                 'KEEP_ZSHRC': 'yes',
                 'RUNZSH': 'no',
