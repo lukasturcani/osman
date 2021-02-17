@@ -28,12 +28,15 @@ class AurManager(Installer):
 
         for package in self._packages:
             package_directory = self._build_directory.joinpath(package)
-            subprocess.run([
-                'git',
-                'clone',
-                f'https://aur.archlinux.org/{package}',
-                str(package_directory),
-            ])
+            subprocess.run(
+                args=[
+                    'git',
+                    'clone',
+                    f'https://aur.archlinux.org/{package}',
+                    str(package_directory),
+                ],
+                check=True,
+            )
 
             with present_working_directory(package_directory):
-                subprocess.run(['makepkg', '-si'])
+                subprocess.run(['makepkg', '-si'], check=True)

@@ -35,12 +35,15 @@ class ProjectsDirectoryMaker(Installer):
 
     def _install_stk(self) -> None:
         stk_master = self._projects.joinpath('stk', 'master')
-        subprocess.run([
-            'git',
-            'clone',
-            'https://lukasturcani@github.com/lukasturcani/stk',
-            str(stk_master),
-        ])
+        subprocess.run(
+            args=[
+                'git',
+                'clone',
+                'https://lukasturcani@github.com/lukasturcani/stk',
+                str(stk_master),
+            ],
+            check=True,
+        )
 
         remotes = (
             Remote('stk', 'supramolecular-toolkit'),
@@ -56,19 +59,25 @@ class ProjectsDirectoryMaker(Installer):
                     f'{remote.account}/stk'
                 )
 
-                subprocess.run([
-                    'git',
-                    'remote',
-                    'set-url',
-                    '--add',
-                    '--push',
-                    'origin',
-                    url,
-                ])
-                subprocess.run([
-                    'git',
-                    'remote',
-                    'add',
-                    remote.name,
-                    url,
-                ])
+                subprocess.run(
+                    args=[
+                        'git',
+                        'remote',
+                        'set-url',
+                        '--add',
+                        '--push',
+                        'origin',
+                        url,
+                    ],
+                    check=True,
+                )
+                subprocess.run(
+                    args=[
+                        'git',
+                        'remote',
+                        'add',
+                        remote.name,
+                        url,
+                    ],
+                    check=True,
+                )

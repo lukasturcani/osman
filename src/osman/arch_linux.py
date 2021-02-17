@@ -166,4 +166,7 @@ class ArchLinux(Installer):
         self._vim_plugin_installer.install()
         self._zsh_installer.install()
         # Change the default shell of root.
-        subprocess.run(['sudo', 'chsh', '-s', '/bin/zsh', 'root'])
+        subprocess.run(
+            args=['sudo', 'chsh', '-s', '/bin/zsh', 'root'],
+            check=True,
+        )

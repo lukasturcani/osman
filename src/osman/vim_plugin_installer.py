@@ -38,4 +38,7 @@ class VimPluginInstaller(Installer):
                 'start',
                 name,
             )
-            subprocess.run(['git', 'clone', plugin, str(destination)])
+            subprocess.run(
+                args=['git', 'clone', plugin, str(destination)],
+                check=True,
+            )

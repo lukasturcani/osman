@@ -27,4 +27,4 @@ class SymbolicLinker(Installer):
                 str(link.source),
                 str(link.destination),
             ]
-            subprocess.run(command)
+            subprocess.run(command, check=True)

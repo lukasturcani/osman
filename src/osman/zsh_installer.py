@@ -38,7 +38,10 @@ class ZshInstaller(Installer):
         for plugin in self._plugins:
             *_, name = plugin.split('/')
             destination = self._plugin_base.joinpath(f'.{name}')
-            subprocess.run(['git', 'clone', plugin, destination])
+            subprocess.run(
+                args=['git', 'clone', plugin, destination],
+                check=True,
+            )
 
     def _install_oh_my_zsh(self) -> None:
 
@@ -46,19 +49,23 @@ class ZshInstaller(Installer):
             'install-oh-my-zsh.sh',
         ))
 
-        subprocess.run([
-            'curl',
-            (
-                'https://raw.githubusercontent.com/'
-                'ohmyzsh/ohmyzsh/master/tools/install.sh'
-            ),
-            '-o',
-            install_script,
-        ])
+        subprocess.run(
+            args=[
+                'curl',
+                (
+                    'https://raw.githubusercontent.com/'
+                    'ohmyzsh/ohmyzsh/master/tools/install.sh'
+                ),
+                '-o',
+                install_script,
+            ],
+            check=True,
+        )
         subprocess.run(
             args=['sh', install_script],
             env={
                 'KEEP_ZSHRC': 'yes',
                 'RUNZSH': 'no',
             },
+            check=True,
         )
