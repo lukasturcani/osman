@@ -81,3 +81,10 @@ class ProjectsDirectoryMaker(Installer):
                     ],
                     check=True,
                 )
+
+            subprocess.run(['git', 'fetch', 'lt'], check=True)
+
+            subprocess.run(
+                args=['git', 'branch', 'master', '-u', 'lt/master'],
+                check=True,
+            )
