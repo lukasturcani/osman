@@ -57,7 +57,7 @@ class ArchLinux(Installer):
                     destination=pathlib.Path('/root', '.zshrc'),
                 ),
                 SymbolicLink(
-                    source=rc_manager_config,
+                    source=mullvad_config,
                     destination=pathlib.Path(
                         '/etc',
                         'wireguard',
@@ -65,7 +65,7 @@ class ArchLinux(Installer):
                     ),
                 ),
                 SymbolicLink(
-                    source=mullvad_config,
+                    source=rc_manager_config,
                     destination=pathlib.Path(
                         '/etc',
                         'NetworkManager',
