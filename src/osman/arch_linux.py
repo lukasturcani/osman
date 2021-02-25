@@ -141,6 +141,7 @@ class ArchLinux(Installer):
                 pathlib.Path.home().joinpath('.ssh'),
                 pathlib.Path.home().joinpath('downloads'),
                 pathlib.Path.home().joinpath('temp'),
+                pathlib.Path.home().joinpath('bin'),
             ),
         )
         self._projects_directory_maker = ProjectsDirectoryMaker()
