@@ -67,6 +67,7 @@ class ZshInstaller(Installer):
                 'CHSH': 'yes',
                 'KEEP_ZSHRC': 'yes',
                 'RUNZSH': 'no',
+                'ZSH': str(pathlib.Path.home().joinpath('.oh-my-zsh')),
             },
             check=True,
         )
