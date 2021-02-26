@@ -31,6 +31,7 @@ class Debian(Installer):
         qtile_config: pathlib.Path,
         vim_config: pathlib.Path,
         ssh_config: pathlib.Path,
+        ranger_config: pathlib.Path,
         global_gitignore: pathlib.Path,
         global_gitconfig: pathlib.Path,
         global_git_credentials: pathlib.Path,
@@ -91,6 +92,10 @@ class Debian(Installer):
                     destination=config.joinpath('nvim', 'init.vim'),
                 ),
                 SymbolicLink(
+                    source=ranger_config,
+                    destination=config.joinpath('ranger', 'rc.conf'),
+                ),
+                SymbolicLink(
                     source=ssh_config,
                     destination=home.joinpath('.ssh', 'config'),
                 ),
@@ -114,6 +119,7 @@ class Debian(Installer):
                 pathlib.Path.home().joinpath('.config', 'qtile'),
                 pathlib.Path.home().joinpath('.config', 'nvim'),
                 pathlib.Path.home().joinpath('.config', 'git'),
+                pathlib.Path.home().joinpath('.config', 'ranger'),
                 pathlib.Path.home().joinpath('.ssh'),
                 pathlib.Path.home().joinpath('downloads'),
                 pathlib.Path.home().joinpath('temp'),
