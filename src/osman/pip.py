@@ -15,10 +15,11 @@ class Pip(Installer):
         self._packages = tuple(packages)
 
     def install(self) -> None:
-        subprocess.run(
-            args=['sudo', 'pip', 'install', *self._packages],
-            check=True,
-        )
+        for package in self._packages:
+            subprocess.run(
+                args=['sudo', 'pip', 'install', package],
+                check=True,
+            )
 
 
 class Pip3(Installer):
@@ -32,7 +33,8 @@ class Pip3(Installer):
         self._packages = tuple(packages)
 
     def install(self) -> None:
-        subprocess.run(
-            args=['sudo', 'pip3', 'install', *self._packages],
-            check=True,
-        )
+        for package in self._packages:
+            subprocess.run(
+                args=['sudo', 'pip3', 'install', package],
+                check=True,
+            )
