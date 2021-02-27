@@ -1,4 +1,4 @@
-from typing import Union, Iterable, Optional
+from typing import Union, Iterable
 import pathlib
 import subprocess
 
@@ -12,7 +12,6 @@ class ZshInstaller(Installer):
         self,
         plugins: Union[str, Iterable[str]],
         theme: SymbolicLink,
-        plugin_base: Optional[pathlib.Path] = None,
     ) -> None:
 
         if isinstance(plugins, str):
@@ -20,24 +19,23 @@ class ZshInstaller(Installer):
 
         self._plugins = tuple(plugins)
 
-        if plugin_base is None:
-            plugin_base = pathlib.Path.home()
-
-        self._plugin_base = plugin_base
-
         self._symbolic_linker = SymbolicLinker(
             symbolic_links=theme,
         )
+        self._plugin_directory = pathlib.Path.home().joinpath(
+            '.oh-my-zsh',
+            'plugins',
+        )
 
     def install(self) -> None:
-        self._install_plugins()
         self._install_oh_my_zsh()
+        self._install_plugins()
         self._symbolic_linker.install()
 
     def _install_plugins(self) -> None:
         for plugin in self._plugins:
             *_, name = plugin.split('/')
-            destination = self._plugin_base.joinpath(f'.{name}')
+            destination = str(self._plugin_directory.joinpath(name))
             subprocess.run(
                 args=['git', 'clone', plugin, destination],
                 check=True,
