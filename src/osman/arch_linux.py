@@ -29,6 +29,7 @@ class ArchLinux(Installer):
         pypirc: pathlib.Path,
         xinitrc: pathlib.Path,
         xresources: pathlib.Path,
+        condarc: pathlib.Path,
         picom_config: pathlib.Path,
         user_dirs_config: pathlib.Path,
         qtile_config: pathlib.Path,
@@ -98,6 +99,10 @@ class ArchLinux(Installer):
                 SymbolicLink(
                     source=xresources,
                     destination=home.joinpath('.Xresources'),
+                ),
+                SymbolicLink(
+                    source=condarc,
+                    destination=home.joinpath('.condarc'),
                 ),
                 SymbolicLink(
                     source=picom_config,

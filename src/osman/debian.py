@@ -27,6 +27,7 @@ class Debian(Installer):
         pypirc: pathlib.Path,
         xinitrc: pathlib.Path,
         xresources: pathlib.Path,
+        condarc: pathlib.Path,
         user_dirs_config: pathlib.Path,
         qtile_config: pathlib.Path,
         vim_config: pathlib.Path,
@@ -78,6 +79,10 @@ class Debian(Installer):
                 SymbolicLink(
                     source=xresources,
                     destination=home.joinpath('.Xresources'),
+                ),
+                SymbolicLink(
+                    source=condarc,
+                    destination=home.joinpath('.condarc'),
                 ),
                 SymbolicLink(
                     source=user_dirs_config,
