@@ -127,7 +127,6 @@ class Debian(Installer):
                 pathlib.Path.home().joinpath('.config', 'ranger'),
                 pathlib.Path.home().joinpath('.ssh'),
                 pathlib.Path.home().joinpath('downloads'),
-                pathlib.Path.home().joinpath('temp'),
                 pathlib.Path.home().joinpath('bin'),
             ),
         )
