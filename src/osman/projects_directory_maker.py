@@ -52,6 +52,17 @@ class ProjectsDirectoryMaker(Installer):
         )
 
         with present_working_directory(stk_master):
+            subprocess.run(
+                args=[
+                    'git',
+                    'remote',
+                    'add',
+                    'all',
+                    'https://lukasturcani@github.com/lukasturcani/stk',
+                ],
+                check=True,
+            )
+
             for remote in remotes:
 
                 url = (
@@ -66,7 +77,7 @@ class ProjectsDirectoryMaker(Installer):
                         'set-url',
                         '--add',
                         '--push',
-                        'origin',
+                        'all',
                         url,
                     ],
                     check=True,
@@ -82,9 +93,15 @@ class ProjectsDirectoryMaker(Installer):
                     check=True,
                 )
 
-            subprocess.run(['git', 'fetch', 'lt'], check=True)
+            subprocess.run(['git', 'fetch', 'origin'], check=True)
 
             subprocess.run(
-                args=['git', 'branch', 'master', '-u', 'lt/master'],
+                args=[
+                    'git',
+                    'branch',
+                    'master',
+                    '-u',
+                    'origin/master',
+                ],
                 check=True,
             )
