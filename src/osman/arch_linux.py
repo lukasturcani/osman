@@ -181,3 +181,9 @@ class ArchLinux(Installer):
             args=['sudo', 'chsh', '-s', '/bin/zsh', 'root'],
             check=True,
         )
+
+    def install_user_symbolic_links(self) -> None:
+        self._user_symbolic_linker.install()
+
+    def install_projects_directory(self) -> None:
+        self._projects_directory_maker.install()
