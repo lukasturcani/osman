@@ -35,6 +35,7 @@ class Ubuntu(Installer):
         global_gitignore: pathlib.Path,
         global_gitconfig: pathlib.Path,
         global_git_credentials: pathlib.Path,
+        qtile_xsession: pathlib.Path,
     ) -> None:
 
         self._apt = Apt(apt_packages)
@@ -48,6 +49,15 @@ class Ubuntu(Installer):
                         'fonts',
                         'conf.d',
                         '00-font-settings.conf',
+                    ),
+                ),
+                SymbolicLink(
+                    source=qtile_xsession,
+                    destination=pathlib.Path(
+                        '/usr',
+                        'share',
+                        'xsessions',
+                        'qtile.desktop',
                     ),
                 ),
             ),
