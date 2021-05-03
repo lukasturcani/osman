@@ -35,7 +35,7 @@ class Ubuntu(Installer):
         global_gitconfig: pathlib.Path,
         global_git_credentials: pathlib.Path,
         qtile_xsession: pathlib.Path,
-        xsession: pathlib.Path,
+        xprofile: pathlib.Path,
     ) -> None:
 
         self._apt = Apt(apt_packages)
@@ -78,8 +78,8 @@ class Ubuntu(Installer):
                     destination=home.joinpath('.zshrc'),
                 ),
                 SymbolicLink(
-                    source=xsession,
-                    destination=home.joinpath('.xinitrc'),
+                    source=xprofile,
+                    destination=home.joinpath('.xprofile'),
                 ),
                 SymbolicLink(
                     source=xresources,
