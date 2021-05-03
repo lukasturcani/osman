@@ -24,7 +24,6 @@ class Ubuntu(Installer):
         zsh_theme: pathlib.Path,
         zshrc: pathlib.Path,
         pypirc: pathlib.Path,
-        xinitrc: pathlib.Path,
         xresources: pathlib.Path,
         condarc: pathlib.Path,
         user_dirs_config: pathlib.Path,
@@ -36,6 +35,7 @@ class Ubuntu(Installer):
         global_gitconfig: pathlib.Path,
         global_git_credentials: pathlib.Path,
         qtile_xsession: pathlib.Path,
+        xsession: pathlib.Path,
     ) -> None:
 
         self._apt = Apt(apt_packages)
@@ -78,7 +78,7 @@ class Ubuntu(Installer):
                     destination=home.joinpath('.zshrc'),
                 ),
                 SymbolicLink(
-                    source=xinitrc,
+                    source=xsession,
                     destination=home.joinpath('.xinitrc'),
                 ),
                 SymbolicLink(
