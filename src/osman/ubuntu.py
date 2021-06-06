@@ -1,6 +1,5 @@
 from typing import Iterable, Union
 import pathlib
-import subprocess
 
 from .installer import Installer
 from .apt import Apt
@@ -34,6 +33,7 @@ class Ubuntu(Installer):
         global_gitignore: pathlib.Path,
         global_gitconfig: pathlib.Path,
         global_git_credentials: pathlib.Path,
+        global_git_commit_template: pathlib.Path,
         qtile_xsession: pathlib.Path,
         xprofile: pathlib.Path,
     ) -> None:
@@ -120,6 +120,10 @@ class Ubuntu(Installer):
                 SymbolicLink(
                     source=global_git_credentials,
                     destination=home.joinpath('.git-credentials'),
+                ),
+                SymbolicLink(
+                    source=global_git_commit_template,
+                    destination=home.joinpath('.git-commit-template'),
                 ),
             ),
         )

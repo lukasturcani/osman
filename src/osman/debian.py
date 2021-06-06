@@ -36,6 +36,7 @@ class Debian(Installer):
         global_gitignore: pathlib.Path,
         global_gitconfig: pathlib.Path,
         global_git_credentials: pathlib.Path,
+        global_git_commit_template: pathlib.Path,
     ) -> None:
 
         self._apt = Apt(apt_packages)
@@ -115,6 +116,10 @@ class Debian(Installer):
                 SymbolicLink(
                     source=global_git_credentials,
                     destination=home.joinpath('.git-credentials'),
+                ),
+                SymbolicLink(
+                    source=global_git_commit_template,
+                    destination=home.joinpath('.git-commit-template'),
                 ),
             ),
         )
