@@ -23,6 +23,7 @@ class Ubuntu(Installer):
         zsh_theme: pathlib.Path,
         zshrc: pathlib.Path,
         pypirc: pathlib.Path,
+        gdbinit: pathlib.Path,
         xresources: pathlib.Path,
         inputrc: pathlib.Path,
         condarc: pathlib.Path,
@@ -85,6 +86,10 @@ class Ubuntu(Installer):
                 SymbolicLink(
                     source=xprofile,
                     destination=home.joinpath('.xprofile'),
+                ),
+                SymbolicLink(
+                    source=gdbinit,
+                    destination=home.joinpath('.gdbinit'),
                 ),
                 SymbolicLink(
                     source=xresources,

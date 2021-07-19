@@ -29,6 +29,7 @@ class ArchLinux(Installer):
         pypirc: pathlib.Path,
         xinitrc: pathlib.Path,
         inputrc: pathlib.Path,
+        gdbinit: pathlib.Path,
         xresources: pathlib.Path,
         condarc: pathlib.Path,
         picom_config: pathlib.Path,
@@ -97,6 +98,10 @@ class ArchLinux(Installer):
                 SymbolicLink(
                     source=xinitrc,
                     destination=home.joinpath('.xinitrc'),
+                ),
+                SymbolicLink(
+                    source=gdbinit,
+                    destination=home.joinpath('.gdbinit'),
                 ),
                 SymbolicLink(
                     source=inputrc,
