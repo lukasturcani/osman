@@ -24,6 +24,7 @@ class Ubuntu(Installer):
         zshrc: pathlib.Path,
         pypirc: pathlib.Path,
         xresources: pathlib.Path,
+        inputrc: pathlib.Path,
         condarc: pathlib.Path,
         user_dirs_config: pathlib.Path,
         qtile_config: pathlib.Path,
@@ -76,6 +77,10 @@ class Ubuntu(Installer):
                 SymbolicLink(
                     source=zshrc,
                     destination=home.joinpath('.zshrc'),
+                ),
+                SymbolicLink(
+                    source=inputrc,
+                    destination=home.joinpath('.inputrc'),
                 ),
                 SymbolicLink(
                     source=xprofile,

@@ -26,6 +26,7 @@ class Debian(Installer):
         zshrc: pathlib.Path,
         pypirc: pathlib.Path,
         xinitrc: pathlib.Path,
+        inputrc: pathlib.Path,
         xresources: pathlib.Path,
         condarc: pathlib.Path,
         user_dirs_config: pathlib.Path,
@@ -76,6 +77,10 @@ class Debian(Installer):
                 SymbolicLink(
                     source=xinitrc,
                     destination=home.joinpath('.xinitrc'),
+                ),
+                SymbolicLink(
+                    source=inputrc,
+                    destination=home.joinpath('.inputrc'),
                 ),
                 SymbolicLink(
                     source=xresources,
