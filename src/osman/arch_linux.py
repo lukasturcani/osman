@@ -27,6 +27,7 @@ class ArchLinux(Installer):
         zsh_theme: pathlib.Path,
         zshrc: pathlib.Path,
         pypirc: pathlib.Path,
+        ipython_config: pathlib.Path,
         xinitrc: pathlib.Path,
         inputrc: pathlib.Path,
         gdbinit: pathlib.Path,
@@ -87,6 +88,14 @@ class ArchLinux(Installer):
 
         self._user_symbolic_linker = SymbolicLinker(
             symbolic_links=(
+                SymbolicLink(
+                    source=ipython_config,
+                    destination=home.joinpath(
+                        '.ipython',
+                        'profile_default',
+                        'ipython_config.py',
+                    ),
+                ),
                 SymbolicLink(
                     source=pypirc,
                     destination=home.joinpath('.pypirc'),
