@@ -24,7 +24,6 @@ class Debian(Installer):
         root_zshrc: pathlib.Path,
         zsh_theme: pathlib.Path,
         zshrc: pathlib.Path,
-        pypirc: pathlib.Path,
         ipython_config: pathlib.Path,
         xinitrc: pathlib.Path,
         inputrc: pathlib.Path,
@@ -74,10 +73,6 @@ class Debian(Installer):
                         'profile_default',
                         'ipython_config.py',
                     ),
-                ),
-                SymbolicLink(
-                    source=pypirc,
-                    destination=home.joinpath('.pypirc'),
                 ),
                 SymbolicLink(
                     source=zshrc,

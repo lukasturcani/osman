@@ -22,7 +22,6 @@ class Ubuntu(Installer):
         font_settings: pathlib.Path,
         zsh_theme: pathlib.Path,
         zshrc: pathlib.Path,
-        pypirc: pathlib.Path,
         gdbinit: pathlib.Path,
         ipython_config: pathlib.Path,
         xresources: pathlib.Path,
@@ -78,10 +77,6 @@ class Ubuntu(Installer):
                         'profile_default',
                         'ipython_config.py',
                     ),
-                ),
-                SymbolicLink(
-                    source=pypirc,
-                    destination=home.joinpath('.pypirc'),
                 ),
                 SymbolicLink(
                     source=zshrc,
