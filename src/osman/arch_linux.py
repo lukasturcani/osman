@@ -41,7 +41,6 @@ class ArchLinux(Installer):
         ranger_config: pathlib.Path,
         global_gitignore: pathlib.Path,
         global_gitconfig: pathlib.Path,
-        global_git_credentials: pathlib.Path,
         global_git_commit_template: pathlib.Path,
     ) -> None:
 
@@ -155,10 +154,6 @@ class ArchLinux(Installer):
                 SymbolicLink(
                     source=global_gitconfig,
                     destination=home.joinpath('.gitconfig'),
-                ),
-                SymbolicLink(
-                    source=global_git_credentials,
-                    destination=home.joinpath('.git-credentials'),
                 ),
                 SymbolicLink(
                     source=global_git_commit_template,
