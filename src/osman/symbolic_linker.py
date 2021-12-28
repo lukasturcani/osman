@@ -20,6 +20,7 @@ class SymbolicLinker(Installer):
     def install(self) -> None:
 
         for link in self._symbolic_links:
+            link.destination.parent.mkdir(parents=True, exist_ok=True)
             command = ['sudo'] if self._root else []
             command += [
                 'ln',
