@@ -26,6 +26,7 @@ class ArchLinux(Installer):
         mullvad_config: pathlib.Path,
         zsh_theme: pathlib.Path,
         zshrc: pathlib.Path,
+        zprofile: pathlib.Path,
         ipython_config: pathlib.Path,
         xinitrc: pathlib.Path,
         inputrc: pathlib.Path,
@@ -97,6 +98,10 @@ class ArchLinux(Installer):
                 SymbolicLink(
                     source=zshrc,
                     destination=home.joinpath('.zshrc'),
+                ),
+                SymbolicLink(
+                    source=zprofile,
+                    destination=home.joinpath('.zprofile'),
                 ),
                 SymbolicLink(
                     source=xinitrc,
