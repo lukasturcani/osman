@@ -33,6 +33,7 @@ class ArchLinux(Installer):
         gdbinit: pathlib.Path,
         xresources: pathlib.Path,
         gpg_agent_config: pathlib.Path,
+        gpg_config: pathlib.Path,
         condarc: pathlib.Path,
         picom_config: pathlib.Path,
         user_dirs_config: pathlib.Path,
@@ -166,6 +167,10 @@ class ArchLinux(Installer):
                         '.gnupg',
                         'gpg-agent.conf',
                     ),
+                ),
+                SymbolicLink(
+                    source=gpg_config,
+                    destination=home.joinpath('.gnupg', 'gpg.conf'),
                 ),
             ),
         )
