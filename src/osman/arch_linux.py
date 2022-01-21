@@ -32,6 +32,7 @@ class ArchLinux(Installer):
         inputrc: pathlib.Path,
         gdbinit: pathlib.Path,
         xresources: pathlib.Path,
+        gpg_agent_config=pathlib.Path,
         condarc: pathlib.Path,
         picom_config: pathlib.Path,
         user_dirs_config: pathlib.Path,
@@ -158,6 +159,13 @@ class ArchLinux(Installer):
                 SymbolicLink(
                     source=global_git_commit_template,
                     destination=home.joinpath('.git-commit-template'),
+                ),
+                SymbolicLink(
+                    source=gpg_agent_config,
+                    destination=home.joinpath(
+                        '.gnupg',
+                        'gpg-agent.conf',
+                    ),
                 ),
             ),
         )
