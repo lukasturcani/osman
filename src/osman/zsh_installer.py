@@ -1,6 +1,7 @@
 from typing import Union, Iterable
 import pathlib
 import subprocess
+import os
 
 from .installer import Installer
 from .symbolic_link import SymbolicLink
@@ -61,7 +62,7 @@ class ZshInstaller(Installer):
         )
         subprocess.run(
             args=['sh', install_script],
-            env={
+            env=os.environ | {
                 'CHSH': 'yes',
                 'KEEP_ZSHRC': 'yes',
                 'RUNZSH': 'no',

@@ -208,11 +208,6 @@ class ArchLinux(Installer):
         self._projects_directory_maker.install()
         self._vim_plugin_installer.install()
         self._zsh_installer.install()
-        # Turn off screen saver.
-        subprocess.run(
-            args=['xset', 's', 'off'],
-            check=True,
-        )
         # Change the default shell of root.
         subprocess.run(
             args=['sudo', 'chsh', '-s', '/bin/zsh', 'root'],
