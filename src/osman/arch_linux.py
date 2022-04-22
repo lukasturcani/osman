@@ -44,7 +44,7 @@ class ArchLinux(Installer):
         global_gitignore: pathlib.Path,
         global_gitconfig: pathlib.Path,
         global_git_commit_template: pathlib.Path,
-        alacritty_config: pathlib.Path,
+        alacritty_themes: pathlib.Path,
     ) -> None:
 
         self._pacman = Pacman(pacman_packages)
@@ -174,8 +174,8 @@ class ArchLinux(Installer):
                     destination=home.joinpath('.gnupg', 'gpg.conf'),
                 ),
                 SymbolicLink(
-                    source=alacritty_config,
-                    destination=home.joinpath('.alacrity.yml'),
+                    source=alacritty_themes,
+                    destination=home.joinpath('.alacrity-themes'),
                 ),
             ),
         )
