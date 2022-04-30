@@ -28,6 +28,7 @@ class ArchLinux(Installer):
         zshrc: pathlib.Path,
         zprofile: pathlib.Path,
         ipython_config: pathlib.Path,
+        ptpython_config: pathlib.Path,
         xinitrc: pathlib.Path,
         inputrc: pathlib.Path,
         gdbinit: pathlib.Path,
@@ -95,6 +96,14 @@ class ArchLinux(Installer):
                         '.ipython',
                         'profile_default',
                         'ipython_config.py',
+                    ),
+                ),
+                SymbolicLink(
+                    source=ptpython_config,
+                    destination=home.joinpath(
+                        '.config',
+                        'ptpython',
+                        'config.py',
                     ),
                 ),
                 SymbolicLink(
