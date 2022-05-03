@@ -62,7 +62,7 @@ class ZshInstaller(Installer):
         )
         subprocess.run(
             args=['sh', install_script],
-            env=os.environ | {
+            env=dict(os.environ) | {
                 'CHSH': 'yes',
                 'KEEP_ZSHRC': 'yes',
                 'RUNZSH': 'no',

@@ -10,6 +10,7 @@ from .aur_manager import AurManager
 from .directory_maker import DirectoryMaker
 from .projects_directory_maker import ProjectsDirectoryMaker
 from .vim_plugin_installer import VimPluginInstaller
+from .ranger_plugin_installer import RangerPluginInstaller
 from .zsh_installer import ZshInstaller
 
 
@@ -20,6 +21,7 @@ class ArchLinux(Installer):
         aur_packages: Union[str, Iterable[str]],
         vim_plugins: Union[str, Iterable[str]],
         zsh_plugins: Union[str, Iterable[str]],
+        ranger_plugins: Union[str, Iterable[str]],
         font_settings: pathlib.Path,
         root_zshrc: pathlib.Path,
         rc_manager_config: pathlib.Path,
@@ -201,6 +203,9 @@ class ArchLinux(Installer):
             ),
         )
         self._projects_directory_maker = ProjectsDirectoryMaker()
+        self._ranger_plugin_installer = RangerPluginInstaller(
+            plugins=ranger_plugins,
+        )
         self._vim_plugin_installer = VimPluginInstaller(vim_plugins)
         self._zsh_installer = ZshInstaller(
             plugins=zsh_plugins,
@@ -221,6 +226,7 @@ class ArchLinux(Installer):
         self._user_symbolic_linker.install()
         self._projects_directory_maker.install()
         self._vim_plugin_installer.install()
+        self._ranger_plugin_installer.install()
         self._zsh_installer.install()
         # Change the default shell of root.
         subprocess.run(
