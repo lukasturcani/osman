@@ -188,6 +188,10 @@ class ArchLinux(Installer):
                     source=alacritty_themes,
                     destination=home.joinpath('.alacrity-themes'),
                 ),
+                SymbolicLink(
+                    source=zsh_theme,
+                    destination=home.joinpath('.p10k.zsh'),
+                ),
             ),
         )
         self._directory_maker = DirectoryMaker(
@@ -210,14 +214,6 @@ class ArchLinux(Installer):
         self._vim_plugin_installer = VimPluginInstaller(vim_plugins)
         self._zsh_installer = ZshInstaller(
             plugins=zsh_plugins,
-            theme=SymbolicLink(
-                source=zsh_theme,
-                destination=pathlib.Path.home().joinpath(
-                    '.oh-my-zsh',
-                    'themes',
-                    'avit-no-icons.zsh-theme',
-                ),
-            ),
         )
 
     def install(self) -> None:

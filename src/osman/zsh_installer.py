@@ -22,6 +22,15 @@ class ZshInstaller(Installer):
         )
 
     def install(self) -> None:
+        subprocess.run(
+            args=[
+                'git',
+                'clone',
+                'https://github.com/romkatv/powerlevel10k',
+                pathlib.Path.home().joinpath('.zsh', 'powerlevel10k'),
+            ],
+            check=True,
+        )
         for plugin in self._plugins:
             *_, name = plugin.split('/')
             destination = str(self._plugin_directory.joinpath(name))
