@@ -151,7 +151,7 @@ class ArchLinux(Installer):
                 ),
                 SymbolicLink(
                     source=vim_config,
-                    destination=config.joinpath('nvim', 'init.vim'),
+                    destination=config.joinpath('lvim', 'config.lua'),
                 ),
                 SymbolicLink(
                     source=ranger_config,
