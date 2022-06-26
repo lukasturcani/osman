@@ -9,7 +9,6 @@ from .symbolic_linker import SymbolicLinker
 from .aur_manager import AurManager
 from .directory_maker import DirectoryMaker
 from .projects_directory_maker import ProjectsDirectoryMaker
-from .vim_plugin_installer import VimPluginInstaller
 from .ranger_plugin_installer import RangerPluginInstaller
 from .zsh_installer import ZshInstaller
 
@@ -19,7 +18,6 @@ class ArchLinux(Installer):
         self,
         pacman_packages: Union[str, Iterable[str]],
         aur_packages: Union[str, Iterable[str]],
-        vim_plugins: Union[str, Iterable[str]],
         zsh_plugins: Union[str, Iterable[str]],
         ranger_plugins: Union[str, Iterable[str]],
         font_settings: pathlib.Path,
@@ -55,15 +53,6 @@ class ArchLinux(Installer):
         self._root_symbolic_linker = SymbolicLinker(
             symbolic_links=(
                 SymbolicLink(
-                    source=font_settings,
-                    destination=pathlib.Path(
-                        '/etc',
-                        'fonts',
-                        'conf.d',
-                        '00-font-settings.conf',
-                    ),
-                ),
-                SymbolicLink(
                     source=root_zshrc,
                     destination=pathlib.Path('/root', '.zshrc'),
                 ),
@@ -93,6 +82,27 @@ class ArchLinux(Installer):
 
         self._user_symbolic_linker = SymbolicLinker(
             symbolic_links=(
+                SymbolicLink(
+                    source=font_settings,
+                    destination=config.joinpath(
+                        'fontconfig',
+                        'fonts.conf',
+                    ),
+                ),
+                SymbolicLink(
+                    source=pathlib.Path(
+                        '/usr',
+                        'share',
+                        'fontconfig',
+                        'conf.avail',
+                        '50-user.conf',
+                    ),
+                    destination=config.joinpath(
+                        'fontconfig',
+                        'conf.d',
+                        '50-user.conf',
+                    ),
+                ),
                 SymbolicLink(
                     source=ipython_config,
                     destination=home.joinpath(
@@ -211,7 +221,6 @@ class ArchLinux(Installer):
         self._ranger_plugin_installer = RangerPluginInstaller(
             plugins=ranger_plugins,
         )
-        self._vim_plugin_installer = VimPluginInstaller(vim_plugins)
         self._zsh_installer = ZshInstaller(
             plugins=zsh_plugins,
         )
@@ -222,7 +231,6 @@ class ArchLinux(Installer):
         self._root_symbolic_linker.install()
         self._user_symbolic_linker.install()
         self._projects_directory_maker.install()
-        self._vim_plugin_installer.install()
         self._ranger_plugin_installer.install()
         self._zsh_installer.install()
         # Change the default shell of root.
