@@ -1,6 +1,6 @@
-from typing import Iterable, Union, Optional
 import pathlib
 import subprocess
+from typing import Iterable, Optional, Union
 
 from .installer import Installer
 from .present_working_directory import present_working_directory
@@ -14,12 +14,12 @@ class AurManager(Installer):
     ) -> None:
 
         if isinstance(packages, str):
-            packages = (packages, )
+            packages = (packages,)
 
         self._packages = tuple(packages)
 
         if build_directory is None:
-            build_directory = pathlib.Path.home().joinpath('builds')
+            build_directory = pathlib.Path.home().joinpath("builds")
 
         self._build_directory = build_directory
 
@@ -30,13 +30,13 @@ class AurManager(Installer):
             package_directory = self._build_directory.joinpath(package)
             subprocess.run(
                 args=[
-                    'git',
-                    'clone',
-                    f'https://aur.archlinux.org/{package}',
+                    "git",
+                    "clone",
+                    f"https://aur.archlinux.org/{package}",
                     str(package_directory),
                 ],
                 check=True,
             )
 
             with present_working_directory(package_directory):
-                subprocess.run(['makepkg', '-si'], check=True)
+                subprocess.run(["makepkg", "-si"], check=True)

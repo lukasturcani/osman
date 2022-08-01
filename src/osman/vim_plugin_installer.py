@@ -1,6 +1,6 @@
-from typing import Union, Iterable, Optional
 import pathlib
 import subprocess
+from typing import Iterable, Optional, Union
 
 from .installer import Installer
 
@@ -13,7 +13,7 @@ class VimPluginInstaller(Installer):
     ) -> None:
 
         if isinstance(plugins, str):
-            plugins = (plugins, )
+            plugins = (plugins,)
 
         self._plugins = tuple(plugins)
 
@@ -21,24 +21,24 @@ class VimPluginInstaller(Installer):
             base = pathlib.Path.home()
 
         self._plugin_directory = base.joinpath(
-            '.local',
-            'share',
-            'nvim',
-            'site',
-            'pack',
+            ".local",
+            "share",
+            "nvim",
+            "site",
+            "pack",
         )
 
     def install(self) -> None:
         self._plugin_directory.mkdir(parents=True, exist_ok=True)
 
         for plugin in self._plugins:
-            *_, name = plugin.split('/')
+            *_, name = plugin.split("/")
             destination = self._plugin_directory.joinpath(
                 name,
-                'start',
+                "start",
                 name,
             )
             subprocess.run(
-                args=['git', 'clone', plugin, str(destination)],
+                args=["git", "clone", plugin, str(destination)],
                 check=True,
             )

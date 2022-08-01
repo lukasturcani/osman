@@ -1,6 +1,6 @@
-from contextlib import contextmanager
-import pathlib
 import os
+import pathlib
+from contextlib import contextmanager
 
 
 @contextmanager

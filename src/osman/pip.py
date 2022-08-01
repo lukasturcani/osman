@@ -1,5 +1,5 @@
-from typing import Iterable, Union
 import subprocess
+from typing import Iterable, Union
 
 from .installer import Installer
 
@@ -10,14 +10,14 @@ class Pip(Installer):
         packages: Union[str, Iterable[str]],
     ):
         if isinstance(packages, str):
-            packages = (packages, )
+            packages = (packages,)
 
         self._packages = tuple(packages)
 
     def install(self) -> None:
         for package in self._packages:
             subprocess.run(
-                args=['sudo', 'pip', 'install', package],
+                args=["sudo", "pip", "install", package],
                 check=True,
             )
 
@@ -28,13 +28,13 @@ class Pip3(Installer):
         packages: Union[str, Iterable[str]],
     ):
         if isinstance(packages, str):
-            packages = (packages, )
+            packages = (packages,)
 
         self._packages = tuple(packages)
 
     def install(self) -> None:
         for package in self._packages:
             subprocess.run(
-                args=['sudo', 'pip3', 'install', package],
+                args=["sudo", "pip3", "install", package],
                 check=True,
             )

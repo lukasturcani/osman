@@ -1,5 +1,5 @@
-from typing import Iterable, Union
 import subprocess
+from typing import Iterable, Union
 
 from .installer import Installer
 from .symbolic_link import SymbolicLink
@@ -12,7 +12,7 @@ class SymbolicLinker(Installer):
         root: bool = False,
     ):
         if isinstance(symbolic_links, SymbolicLink):
-            symbolic_links = (symbolic_links, )
+            symbolic_links = (symbolic_links,)
 
         self._symbolic_links = tuple(symbolic_links)
         self._root = root
@@ -21,10 +21,10 @@ class SymbolicLinker(Installer):
 
         for link in self._symbolic_links:
             link.destination.parent.mkdir(parents=True, exist_ok=True)
-            command = ['sudo'] if self._root else []
+            command = ["sudo"] if self._root else []
             command += [
-                'ln',
-                '-sf',
+                "ln",
+                "-sf",
                 str(link.source),
                 str(link.destination),
             ]

@@ -23,7 +23,7 @@ class SymbolicLink:
         return self._destination
 
     def __str__(self):
-        return f'SymbolicLink({self._source}, {self._destination})'
+        return f"SymbolicLink({self._source}, {self._destination})"
 
     def __repr__(self):
         return str(self)

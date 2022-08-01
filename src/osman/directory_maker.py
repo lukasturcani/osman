@@ -1,5 +1,5 @@
-from typing import Union, Iterable
 import pathlib
+from typing import Iterable, Union
 
 from .installer import Installer
 
@@ -11,7 +11,7 @@ class DirectoryMaker(Installer):
     ) -> None:
 
         if isinstance(directories, pathlib.Path):
-            directories = (directories, )
+            directories = (directories,)
 
         self._directories = tuple(
             directory.resolve() for directory in directories

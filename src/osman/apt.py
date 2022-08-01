@@ -1,5 +1,5 @@
-from typing import Iterable, Union
 import subprocess
+from typing import Iterable, Union
 
 from .installer import Installer
 
@@ -10,12 +10,12 @@ class Apt(Installer):
         packages: Union[str, Iterable[str]],
     ):
         if isinstance(packages, str):
-            packages = (packages, )
+            packages = (packages,)
 
         self._packages = tuple(packages)
 
     def install(self) -> None:
         subprocess.run(
-            args=['sudo', 'apt', 'install', *self._packages],
+            args=["sudo", "apt", "install", *self._packages],
             check=True,
         )

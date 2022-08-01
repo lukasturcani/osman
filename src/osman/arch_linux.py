@@ -1,15 +1,15 @@
-from typing import Iterable, Union
 import pathlib
 import subprocess
+from typing import Iterable, Union
 
-from .installer import Installer
-from .pacman import Pacman
-from .symbolic_link import SymbolicLink
-from .symbolic_linker import SymbolicLinker
 from .aur_manager import AurManager
 from .directory_maker import DirectoryMaker
+from .installer import Installer
+from .pacman import Pacman
 from .projects_directory_maker import ProjectsDirectoryMaker
 from .ranger_plugin_installer import RangerPluginInstaller
+from .symbolic_link import SymbolicLink
+from .symbolic_linker import SymbolicLinker
 from .zsh_installer import ZshInstaller
 
 
@@ -54,23 +54,23 @@ class ArchLinux(Installer):
             symbolic_links=(
                 SymbolicLink(
                     source=root_zshrc,
-                    destination=pathlib.Path('/root', '.zshrc'),
+                    destination=pathlib.Path("/root", ".zshrc"),
                 ),
                 SymbolicLink(
                     source=mullvad_config,
                     destination=pathlib.Path(
-                        '/etc',
-                        'wireguard',
-                        'mullvad-cz4.conf',
+                        "/etc",
+                        "wireguard",
+                        "mullvad-cz4.conf",
                     ),
                 ),
                 SymbolicLink(
                     source=rc_manager_config,
                     destination=pathlib.Path(
-                        '/etc',
-                        'NetworkManager',
-                        'conf.d',
-                        'rc-manager.conf',
+                        "/etc",
+                        "NetworkManager",
+                        "conf.d",
+                        "rc-manager.conf",
                     ),
                 ),
             ),
@@ -78,143 +78,143 @@ class ArchLinux(Installer):
         )
 
         home = pathlib.Path.home()
-        config = home.joinpath('.config')
+        config = home.joinpath(".config")
 
         self._user_symbolic_linker = SymbolicLinker(
             symbolic_links=(
                 SymbolicLink(
                     source=font_settings,
                     destination=config.joinpath(
-                        'fontconfig',
-                        'fonts.conf',
+                        "fontconfig",
+                        "fonts.conf",
                     ),
                 ),
                 SymbolicLink(
                     source=pathlib.Path(
-                        '/usr',
-                        'share',
-                        'fontconfig',
-                        'conf.avail',
-                        '50-user.conf',
+                        "/usr",
+                        "share",
+                        "fontconfig",
+                        "conf.avail",
+                        "50-user.conf",
                     ),
                     destination=config.joinpath(
-                        'fontconfig',
-                        'conf.d',
-                        '50-user.conf',
+                        "fontconfig",
+                        "conf.d",
+                        "50-user.conf",
                     ),
                 ),
                 SymbolicLink(
                     source=ipython_config,
                     destination=home.joinpath(
-                        '.ipython',
-                        'profile_default',
-                        'ipython_config.py',
+                        ".ipython",
+                        "profile_default",
+                        "ipython_config.py",
                     ),
                 ),
                 SymbolicLink(
                     source=ptpython_config,
                     destination=home.joinpath(
-                        '.config',
-                        'ptpython',
-                        'config.py',
+                        ".config",
+                        "ptpython",
+                        "config.py",
                     ),
                 ),
                 SymbolicLink(
                     source=zshrc,
-                    destination=home.joinpath('.zshrc'),
+                    destination=home.joinpath(".zshrc"),
                 ),
                 SymbolicLink(
                     source=zprofile,
-                    destination=home.joinpath('.zprofile'),
+                    destination=home.joinpath(".zprofile"),
                 ),
                 SymbolicLink(
                     source=xinitrc,
-                    destination=home.joinpath('.xinitrc'),
+                    destination=home.joinpath(".xinitrc"),
                 ),
                 SymbolicLink(
                     source=gdbinit,
-                    destination=home.joinpath('.gdbinit'),
+                    destination=home.joinpath(".gdbinit"),
                 ),
                 SymbolicLink(
                     source=inputrc,
-                    destination=home.joinpath('.inputrc'),
+                    destination=home.joinpath(".inputrc"),
                 ),
                 SymbolicLink(
                     source=xresources,
-                    destination=home.joinpath('.Xresources'),
+                    destination=home.joinpath(".Xresources"),
                 ),
                 SymbolicLink(
                     source=condarc,
-                    destination=home.joinpath('.condarc'),
+                    destination=home.joinpath(".condarc"),
                 ),
                 SymbolicLink(
                     source=picom_config,
-                    destination=home.joinpath('.picom.conf'),
+                    destination=home.joinpath(".picom.conf"),
                 ),
                 SymbolicLink(
                     source=user_dirs_config,
-                    destination=config.joinpath('user-dirs.dirs'),
+                    destination=config.joinpath("user-dirs.dirs"),
                 ),
                 SymbolicLink(
                     source=qtile_config,
-                    destination=config.joinpath('qtile', 'config.py'),
+                    destination=config.joinpath("qtile", "config.py"),
                 ),
                 SymbolicLink(
                     source=vim_config,
-                    destination=config.joinpath('lvim', 'config.lua'),
+                    destination=config.joinpath("lvim", "config.lua"),
                 ),
                 SymbolicLink(
                     source=ranger_config,
-                    destination=config.joinpath('ranger', 'rc.conf'),
+                    destination=config.joinpath("ranger", "rc.conf"),
                 ),
                 SymbolicLink(
                     source=ssh_config,
-                    destination=home.joinpath('.ssh', 'config'),
+                    destination=home.joinpath(".ssh", "config"),
                 ),
                 SymbolicLink(
                     source=global_gitignore,
-                    destination=config.joinpath('git', 'ignore'),
+                    destination=config.joinpath("git", "ignore"),
                 ),
                 SymbolicLink(
                     source=global_gitconfig,
-                    destination=home.joinpath('.gitconfig'),
+                    destination=home.joinpath(".gitconfig"),
                 ),
                 SymbolicLink(
                     source=global_git_commit_template,
-                    destination=home.joinpath('.git-commit-template'),
+                    destination=home.joinpath(".git-commit-template"),
                 ),
                 SymbolicLink(
                     source=gpg_agent_config,
                     destination=home.joinpath(
-                        '.gnupg',
-                        'gpg-agent.conf',
+                        ".gnupg",
+                        "gpg-agent.conf",
                     ),
                 ),
                 SymbolicLink(
                     source=gpg_config,
-                    destination=home.joinpath('.gnupg', 'gpg.conf'),
+                    destination=home.joinpath(".gnupg", "gpg.conf"),
                 ),
                 SymbolicLink(
                     source=alacritty_themes,
-                    destination=home.joinpath('.alacrity-themes'),
+                    destination=home.joinpath(".alacrity-themes"),
                 ),
                 SymbolicLink(
                     source=zsh_theme,
-                    destination=home.joinpath('.p10k.zsh'),
+                    destination=home.joinpath(".p10k.zsh"),
                 ),
             ),
         )
         self._directory_maker = DirectoryMaker(
             directories=(
-                pathlib.Path.home().joinpath('.config'),
-                pathlib.Path.home().joinpath('.config', 'qtile'),
-                pathlib.Path.home().joinpath('.config', 'nvim'),
-                pathlib.Path.home().joinpath('.config', 'git'),
-                pathlib.Path.home().joinpath('.config', 'ranger'),
-                pathlib.Path.home().joinpath('.ssh'),
-                pathlib.Path.home().joinpath('downloads'),
-                pathlib.Path.home().joinpath('bin'),
-                pathlib.Path.home().joinpath('.zsh', 'plugins'),
+                pathlib.Path.home().joinpath(".config"),
+                pathlib.Path.home().joinpath(".config", "qtile"),
+                pathlib.Path.home().joinpath(".config", "nvim"),
+                pathlib.Path.home().joinpath(".config", "git"),
+                pathlib.Path.home().joinpath(".config", "ranger"),
+                pathlib.Path.home().joinpath(".ssh"),
+                pathlib.Path.home().joinpath("downloads"),
+                pathlib.Path.home().joinpath("bin"),
+                pathlib.Path.home().joinpath(".zsh", "plugins"),
             ),
         )
         self._projects_directory_maker = ProjectsDirectoryMaker()
@@ -235,7 +235,7 @@ class ArchLinux(Installer):
         self._zsh_installer.install()
         # Change the default shell of root.
         subprocess.run(
-            args=['sudo', 'chsh', '-s', '/bin/zsh', 'root'],
+            args=["sudo", "chsh", "-s", "/bin/zsh", "root"],
             check=True,
         )
 
